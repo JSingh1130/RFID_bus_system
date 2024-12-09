@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"/>
+    <title>Bus RFID Portal</title>
+  </head>
+  <style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root {
+  --primary-color: #313131;
+  --primary-color-dark: #002a3d;
+  --secondary-color: #d87939;
+  --white: #ffffff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color-dark),
+    var(--primary-color)
+  );
+}
+
+nav {
+  position: absolute;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 1;
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.link a {
+  padding: 1rem;
+  padding-top: 2rem;
+  color: var(--white);
+  text-decoration: none;
+  transition: 0.3s;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.link a:hover {
+  background-color: var(--secondary-color);
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.container__left {
+  flex: 1;
+  background-image: url("assets/bus.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.left__content {
+  margin: 5rem 3rem 0 auto;
+  padding: 1rem;
+  max-width: 400px;
+  text-align: right;
+}
+
+.left__content h4 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.left__content p {
+  color: var(--white);
+}
+
+.container__right {
+  flex: 1.5;
+  position: relative;
+}
+
+.container__right img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 350px;
+}
+
+.right__content {
+ 
+  text-align: right;
+  max-width: 650px;
+  margin-left: 8rem;
+  margin-top: 8rem;
+  padding: 2rem;
+}
+
+.right__content h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 3.5rem;
+  color: var(--secondary-color);
+}
+
+.right__content h4 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.right__content p {
+  margin-bottom: 3rem;
+  color: var(--white);
+}
+
+.btn {
+  margin-bottom: 3rem;
+  min-width: 120px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+}
+
+.primary__btn {
+  margin-right: 1rem;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+.secondary__btn {
+  color: var(--secondary-color);
+  background-color: transparent;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.socials span {
+  font-size: 1.5rem;
+  color: var(--white);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.socials span:hover {
+  color: var(--secondary-color);
+}
+
+@media (width < 780px) {
+  nav {
+    justify-content: center;
+  }
+
+  .nav__links {
+    gap: 1rem;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .container__left {
+    min-height: 700px;
+  }
+
+  .left__content {
+    max-width: none;
+    margin: 6rem 0;
+    text-align: center;
+  }
+
+  .container__right {
+    min-height: 700px;
+  }
+
+  .container__right img {
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -100%);
+  }
+
+  .right__content {
+    text-align: center;
+    margin: 8rem auto;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+}
+
+  </style>
+  <body>
+    <nav>
+      <ul class="nav__links">
+        <li class="link"><a href="#">Home</a></li>
+        <li class="link"><a href="#">About Us</a></li>
+        <li class="link"><a href="#">Technology</a></li>
+        <li class="link"><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div class="container__left">
+        <div class="left__content">
+          <h4></h4>
+          <p>
+            
+          </p>
+        </div>
+      </div>
+      <div class="container__right">
+        
+        <div class="right__content">
+          <h1>ENJOY</h1>
+          <h4>Travelling with Us</h4>
+          <p>
+            Welcome to the Future of Convenient Travel!
+
+Thank you for choosing our RFID Bus Ticketing System, where your journey is simplified and streamlined. Say goodbye to traditional tickets and hello to hassle-free, contactless travel! With just a tap, enjoy a seamless boarding experience, real-time fare validation, and enhanced security tailored to meet your needs. Hop on board and experience the convenience of modern travel with us! Safe travels!
+          </p>
+          <div class="action__btns">
+            <button class="btn primary__btn" onclick="login()">Log In</button>
+            <button class="btn secondary__btn" onclick="signup()">Sign Up</button>
+          </div>
+          <div class="socials">
+            <span><i class="ri-instagram-line"></i></span>
+            <span><i class="ri-twitter-fill"></i></span>
+            <span><i class="ri-facebook-fill"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="js/index.js"></script>
+</html>

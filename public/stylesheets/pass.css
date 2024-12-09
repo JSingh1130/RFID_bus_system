@@ -1,0 +1,154 @@
+/* pass.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    color: #333;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    color: #4e54c8;
+    margin-bottom: 10px;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-container {
+    width: 100%;
+  }
+  
+  .form-heading {
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .message {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #4e54c8;
+  }
+  
+  label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #4e54c8;
+  }
+  
+  input[type="text"],
+  input[type="tel"],
+  input[type="date"],
+  input[type="radio"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="date"]:focus {
+    border-color: #4e54c8;
+  }
+  
+  fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
+  legend {
+    color: #4e54c8;
+    font-size: 14px;
+  }
+  
+  label[for="male"],
+  label[for="female"],
+  label[for="other"] {
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  input[type="radio"] {
+    width: auto;
+    margin-right: 5px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4e54c8;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #8f94fb;
+  }
+  
+  .submit-btn:active {
+    background-color: #3c41a3;
+  }
+  
+  ::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+  
+  @media (max-width: 500px) {
+    .container {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  }
+  

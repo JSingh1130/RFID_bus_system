@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPass Registration</title>
+    <link rel="stylesheet" href="/stylesheets/pass.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>SmartPass Registration</h1>
+        </header>
+
+        <main>
+            <section class="form-container">
+                <h2 class="form-heading">Enter Your Information</h2>
+
+                <!-- Show any success or error messages dynamically -->
+                <% if (message) { %>
+                    <div class="message"><%= message %></div>
+                <% } %>
+
+                <!-- Update the form action to "/register" -->
+                <div> 
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                    <fieldset id="gender">
+                        <legend>Gender:</legend>
+                        <label for="male">Male
+                            <input type="radio" id="male" name="gender" value="male" required>
+                        </label>
+                        <label for="female">Female
+                            <input type="radio" id="female" name="gender" value="female" required>
+                        </label>
+                        <label for="other">Other
+                            <input type="radio" id="other" name="gender" value="other" required>
+                        </label>
+                    </fieldset>
+
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+
+                    <label for="contact">Contact:</label>
+                    <input type="tel" id="contact" name="contact" placeholder="Enter contact no." required>
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Enter Address" required>
+
+                    <button type="submit" id="submit-btn" class="submit-btn">Register</button>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+
+<script type="module">
+    
+
+
+
+// Handle User Login
+const registerWithFirebase = async (req, res) => {
+    try {
+        const { name, gender, dob, contact, address } = req.body;
+
+        if (!name || !gender || !dob || !contact || !address) {
+            return res.status(400).render("pass", { message: "All fields are required." });
+        }
+
+        const smartPassData = {
+            name,
+            gender,
+            dob,
+            contact,
+            address
+        };
+
+        // Use push() to generate a unique ID automatically for each new entry
+        const smartPassRef = database.ref("smartPassUsers").push();
+        await smartPassRef.set(smartPassData); // Ensure data is saved to Firebase
+
+        res.status(200).render("pass", { message: "SmartPass Registration Successful" });
+
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).render("pass", { message: "Error saving SmartPass data, please try again." });
+    }
+};
+
+</script>
+
+</html>

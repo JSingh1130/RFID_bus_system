@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="stylesheets/register.css">
+</head>
+<body>
+    <form action="/register" method="post">
+
+        <h3 class="heading">Register</h3>
+        <br>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" autocomplete="on" placeholder="Enter Username">
+        <br>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" autocomplete="on" placeholder="Enter Email">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required placeholder="Enter Password">
+        <br>
+        <button type="submit">Register</button>
+        <br>
+
+        <% if(typeof message !== "undefined"){ %>
+            <p style="color: green;"> <%= message %></p>
+        <% }  %>
+
+    </form>
+</body>
+</html>

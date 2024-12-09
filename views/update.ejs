@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/update.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <nav class="container-item" id="navbar">
+            <h1> User Data Update Portal</h1>
+        </nav>
+
+        <aside class="container-item" id="sidebar">
+            <div class="sidebar-options">
+                <a href="/register">New User Registration</a>
+            </div>
+            <div class="sidebar-options">
+                <a href="/find">Find User</a>
+            </div>
+            <div class="sidebar-options">
+                <a href="/logout">Logout</a>
+            </div>
+        </aside>
+
+        <section class="container-item" id="section">
+            <div class="form">
+
+                <h2 class="form_heading">Enter User Information</h2>
+                <br>
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="on" required>
+
+                <fieldset id="gender">
+                    <legend>Gender: </legend>
+                    <label for="male">Male: <input type="radio" id="male" name="gender" value="male" checked></label>
+                    <label for="female">Female: <input type="radio" id="female" name="gender" value="female"></label>
+                    <label for="third_gender">Third Gender: <input type="radio" id="third_gender" name="gender"
+                            value="third_gender"></label>
+                </fieldset>
+
+                <label for="DOB">DoB:</label>
+                <input type="date" id="DOB" name="date" placeholder="Date of Birth" required>
+
+                <label for="Balance">Balance:</label>
+                <input type="number" id="Balance" name="Balance" placeholder="Balance" required>
+
+                <label for="UID">UID: <span class="fetch-data">Fetch</span></label>
+                <input type="text" id="UID" name="UID" placeholder="UID" required>
+
+                <button class="create-btn" type="submit" onclick="updateUser()">Fetch and Update</button>
+                <button class="delete-btn" onclick="deleteUser()">Delete User</button>
+
+                <p class="acknowledge"></p>
+            </div>
+        </section>
+
+    </div>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
+        import { getDatabase, ref, get, set, child, update, remove } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCUyFWJdNfoxdLMjvBgMuA7lH3tSWX2scI",
+            authDomain: "rfid-bus-ticketing-e18ff.firebaseapp.com",
+            databaseURL: "https://rfid-bus-ticketing-e18ff-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "rfid-bus-ticketing-e18ff",
+            storageBucket: "rfid-bus-ticketing-e18ff.appspot.com",
+            messagingSenderId: "608265479946",
+            appId: "1:608265479946:web:fe01d1c6dc3341bf4a7cf3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+
+        const fetch = document.querySelector(".fetch-data");
+        const messageElement = document.querySelector(".acknowledge");
+
+        fetch.addEventListener("click", async () => {
+            let UID = document.querySelector("#UID").value.trim();
+            if (UID == "") {
+                messageElement.style.color = "yellow";
+                messageElement.textContent = "Please provide a UID to find user.";
+                return;
+            } else {
+                try {
+                    const userRef = ref(db, "Users/" + UID);
+                    const snapshot = await get(userRef);
+
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+
+                        document.querySelector("#name").value = userData.Name || "";
+                        //document.querySelector('input[name="gender"][value="' + userData.Gender + '"]').checked = true;
+                        document.querySelector("#DOB").value = userData.DOB || "";
+                        document.querySelector("#Balance").value = userData.Balance || "";
+                        document.querySelector("#UID").value = userData.UID || "";
+                        const genderRadio = document.querySelector('input[name="gender"][value="' + userData.Gender + '"]');
+                        if (genderRadio) {
+                            genderRadio.checked = true;
+                        } else {
+                            // Handle the case where the gender value doesn't match any radio button
+                            alert("Error fetching data.");
+                            console.error("Gender value does not match any radio button.");
+                        }
+
+                        document.querySelector("#UID").setAttribute("readonly", true);
+                    } else {
+                        messageElement.textContent = "No user found with this UID.";
+                        messageElement.style.color = "orange";
+                    }
+                    clearMessageAfterDelay(messageElement);
+                } catch (error) {
+                    messageElement.textContent = error.message;
+                    messageElement.style.color = "red";
+                    clearMessageAfterDelay(messageElement);
+                }
+            }
+        });
+
+        window.updateUser = async () => {
+            const UID = document.querySelector("#UID").value.trim();
+            const name = document.querySelector("#name").value.trim();
+            const gender = document.querySelector('input[name="gender"]:checked')?.value;
+            const DOB = document.querySelector("#DOB").value.trim();
+            const balance = document.querySelector("#Balance").value.trim();
+
+            if (!UID || !name || !gender || !DOB || !balance) {
+                messageElement.textContent = "All fields are mandatory";
+                messageElement.style.color = "yellow";
+                clearMessageAfterDelay(messageElement);
+                return;
+            }
+
+            try {
+                const userRef = ref(db, "Users/" + UID);
+                const snapshot = await get(userRef);
+
+                if (snapshot.exists()) {
+                    await update(userRef, {
+                        Name: name,
+                        Gender: gender,
+                        DOB: DOB,
+                        Balance: balance
+                    });
+
+                    messageElement.textContent = "Data updated successfully";
+                    messageElement.style.color = "green";
+                } else {
+                    messageElement.textContent = "No user found with this UID.";
+                    messageElement.style.color = "orange";
+                }
+                clearMessageAfterDelay(messageElement);
+            } catch (error) {
+                messageElement.textContent = error.message;
+                messageElement.style.color = "red";
+                clearMessageAfterDelay(messageElement);
+            }
+        };
+
+        window.deleteUser = async() => {
+            const UID = document.querySelector("#UID").value.trim();
+            const messageElement = document.querySelector(".acknowledge");
+
+            if (!UID) {
+                messageElement.textContent = "Please provide a UID to delete the user.";
+                messageElement.style.color = "yellow";
+                clearMessageAfterDelay(messageElement);
+                return;
+            }
+
+            try {
+                const userRef = ref(db, "Users/" + UID);
+                const snapshot = await get(userRef);
+
+                if (snapshot.exists()) {
+                    await remove(userRef);
+
+                    messageElement.textContent = "User deleted successfully.";
+                    messageElement.style.color = "green";
+                } else {
+                    messageElement.textContent = "No user found with this UID.";
+                    messageElement.style.color = "orange";
+                }
+                clearMessageAfterDelay(messageElement);
+            } catch (error) {
+                messageElement.textContent = error.message;
+                messageElement.style.color = "red";
+                clearMessageAfterDelay(messageElement);
+            }
+        }
+
+        function clearMessageAfterDelay(element) {
+            setTimeout(() => {
+                element.textContent = "";
+            }, 5000); // 5000 milliseconds = 5 seconds
+        };
+
+    </script>
+</body>
+
+</html>

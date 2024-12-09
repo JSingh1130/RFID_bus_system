@@ -1,0 +1,34 @@
+<!-- EJS Template (e.g., cardDetails.ejs) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RFID Card Details</title>
+  <link rel="stylesheet" href="stylesheets/card.css">
+</head>
+<body>
+  <div class="card-container">
+    <!-- Card Owner Details -->
+    <div class="card-owner">
+      <h2>Card Owner Details</h2>
+      <p><strong>Name:</strong> Jatinjot Singh</p>
+      <p><strong>Email:</strong> Jatinjot28@gmail.com</p>
+      <p><strong>Phone:</strong> 7889213744</p>
+      <p><strong>Card Number:</strong> 242421</p>
+      <form action="/disable-card" method="POST" class="disable-form">
+        <input type="hidden" name="cardNumber" value="242421424">
+        <button type="submit" class="disable-btn">Disable Card</button>
+      </form>
+    </div>
+
+    <!-- E-Wallet Section -->
+    <div class="e-wallet">
+      <h2>E-Wallet</h2>
+      <p><strong>Balance:</strong> $1000.00</p>
+      <a href="/recharge-wallet" class="recharge-wallet-btn">Recharge E-Wallet</a>
+      <a href="/recharge" class="recharge-btn">Recharge Card</a>
+    </div>
+  </div>
+</body>
+</html>

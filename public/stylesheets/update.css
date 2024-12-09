@@ -1,0 +1,175 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #f4f7fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Navbar */
+#navbar {
+    grid-column: 1 / span 2;
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#navbar h1 {
+    font-size: 2rem;
+}
+
+/* Sidebar */
+#sidebar {
+    background-color: #2C3E50;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-options {
+    margin-bottom: 20px;
+}
+
+.sidebar-options a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    background-color: #34495E;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-options a:hover {
+    background-color: #1ABC9C;
+}
+
+/* Main Section */
+#section {
+    padding: 10px 10px;
+}
+
+.form {
+    background-color: #ECF0F1;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form_heading {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+label {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+input[type="radio"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+input[type="radio"] {
+    width: auto;
+}
+
+fieldset {
+    border: none;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    color: white;
+    margin-right: 10px;
+}
+
+.create-btn {
+    background-color: #3498DB;
+}
+
+.create-btn:hover {
+    background-color: #2980B9;
+}
+
+.delete-btn {
+    background-color: #E74C3C;
+}
+
+.delete-btn:hover {
+    background-color: #C0392B;
+}
+
+/* Acknowledge Message */
+.acknowledge {
+    font-size: 1rem;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    #navbar {
+        font-size: 1.5rem;
+    }
+
+    #sidebar {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #section {
+        padding: 20px;
+    }
+}
